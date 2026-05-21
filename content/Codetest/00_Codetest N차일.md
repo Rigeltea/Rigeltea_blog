@@ -1,5 +1,4 @@
 ---
-title: memoir
 tags:
   - 코드트리
 ---

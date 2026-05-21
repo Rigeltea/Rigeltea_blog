@@ -1,5 +1,4 @@
 ---
-title: codetest
 tags:
   - 코딩테스트
 ---
