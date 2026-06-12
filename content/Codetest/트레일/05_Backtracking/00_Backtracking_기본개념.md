@@ -1,5 +1,45 @@
 
 
+## choose 정리
+
+```python
+
+def choose(idx):
+
+	if idx == 6:
+	  return
+	
+	# 1 리스트 값 추가하기
+	for i in range(4):
+	  answer.append(i)
+	  choose(idx+1)
+	  answer.pop()
+	  
+	
+	# 2 O or X
+	# i가 들어가는 경우
+	answer.append(i)
+	choose(idx+1, selected)
+	answer.pop()
+	
+	# i 가 들어가지 않는 경우
+	choose(idx+1)
+	
+	
+	# 3 value[]/ 리스트 안에 값 넣기
+	for i in range(1,5):
+	  value[idx] = i
+	  choose(idx+1)
+	
+
+
+
+```
+
+
+
+
+
 ## 1. 재귀
 
 ![[Pasted image 20260607235007.png]]
@@ -17,42 +57,9 @@ n = 5
 print(get_sum(n))
 ```
 
-## 2. BFS
+## 2. Choose() / ```answer = []``` 리스트 안에 값 넣는 경우
 
 ![[Pasted image 20260607235025.png]]
-
-
-### choose()
-
-```python
-n = 3
-answer = []
-
-def print_answer():
-    for elem in answer:
-        print(elem, end=" ")
-    print()
-
-def choose(curr_num):
-    # 종료 조건
-    if curr_num == n + 1:
-        print_answer()
-        return
-    
-    # 0을 선택했을 때 재귀 호출
-    answer.append(0)
-    choose(curr_num + 1)
-    answer.pop()
-
-    # 1을 선택했을 때 재귀 호출
-    answer.append(1)
-    choose(curr_num + 1)
-    answer.pop()
-
-    return
-
-choose(1)
-```
 
 ### choose() / range
 ```python
@@ -85,17 +92,9 @@ def choose(curr_num):
 
 
 
-## 3. BFS 2
-
-
-### 1. choose //  idx, selected / 사용해 & 사용하지 않아/ 2^n
-
-
+## 3. choose() //  idx, selected / O&X / 2^n
 
 ```python
-
-
-
 
 answer =
 
@@ -250,3 +249,47 @@ def choose(idx, selected):
 choose(0, [])
 print(answer)
 ```
+
+
+
+
+## 4. choose() / ``` value[i] = num ``` 리스트 안에 값 채우는 방식
+
+```python
+value = [0] * 6 
+def choose(idx): 
+	if idx == 6: print(value) 
+	return 
+	
+for num in range(1, 5):
+	 value[idx] = num choose(idx + 1)
+```
+
+왜냐하면 `idx` 자체가 이미 위치를 뜻하기 때문이야.
+
+```
+idx = 0 → value[0] = a 값
+idx = 1 → value[1] = b 값
+idx = 2 → value[2] = c 값
+```
+
+여기서는 `pop()`이 필요 없어.
+
+다음 숫자로 덮어쓰면 되기 때문이야.
+
+```
+value[idx] = 1
+choose(idx + 1)
+
+value[idx] = 2
+choose(idx + 1)
+
+value[idx] = 3
+choose(idx + 1)
+
+value[idx] = 4
+choose(idx + 1)
+```
+
+
+
